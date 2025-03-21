@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Add a system call"
+title:  "add a system call"
 date:   2025-03-02 19:39:55 +0100
 categories: jekyll update
 ---
