@@ -155,14 +155,46 @@ void * kalloc(void)
 }
 {% endhighlight %}
 
+Spinlocks are a main protagonist in this post so here's a closer look:
+
+{% highlight c %}
+// Mutual exclusion lock.
+struct spinlock {
+  uint locked;       // Is the lock held?
+
+  // For debugging:
+  char *name;        // Name of lock.
+  struct cpu *cpu;   // The cpu holding the lock.
+};
+{% endhighlight %}
+
+and a function acquire:
+
+{% highlight c %}
+void acquire(struct spinlock *lk)
+{
+  push_off(); // disable interrupts to avoid deadlock.
+  if(holding(lk)) panic("acquire");
+
+  // On RISC-V, sync_lock_test_and_set turns into an atomic swap:
+  //   a5 = 1
+  //   s1 = &lk->locked
+  //   amoswap.w.aq a5, a5, (s1)
+  while(__sync_lock_test_and_set(&lk->locked, 1) != 0) ;
+
+  // Tell the C compiler and the processor to not move loads or stores
+  // past this point, to ensure that the critical section's memory
+  // references happen strictly after the lock is acquired.
+  // On RISC-V, this emits a fence instruction.
+  __sync_synchronize();
+
+  // Record info about lock acquisition for holding() and debugging.
+  lk->cpu = mycpu();
+}
+{% endhighlight %}
+
+There's also a function named release which (as the name suggests) releases the lock. Locks deserve a saparete post (e.g. spinlock vs sleeplock) so I'll hope to be able to write one.
 
 
-
-
-
-
-[^1] i guess most people are familiar with malloc which uses sbrk under the hood
-
-
-
+[^1]: i guess most people are familiar with malloc which uses sbrk under the hood
 
