@@ -25,8 +25,13 @@ struct run {
 so we can say that freelist is a pointer to an object that itself is nothing more than a pointer to another object etc etc. Here's how it's initialized
 
 {% highlight c %}
-void
-freerange(void *pa_start, void *pa_end)
+void kinit()
+{
+  initlock(&kmem.lock, "kmem");
+  freerange(end, (void*)PHYSTOP);
+}
+
+void freerange(void *pa_start, void *pa_end)
 {
   char *p;
   p = (char*)PGROUNDUP((uint64)pa_start);
@@ -38,8 +43,7 @@ freerange(void *pa_start, void *pa_end)
 // which normally should have been returned by a
 // call to kalloc().  (The exception is when
 // initializing the allocator; see kinit above.)
-void
-kfree(void *pa)
+void kfree(void *pa)
 {
   struct run *r;
 
@@ -93,8 +97,7 @@ void kinit()
 and kfree
 
 {% highlight c %}
-void
-kfree(void *pa)
+void kfree(void *pa)
 {
   struct run *r;
 
