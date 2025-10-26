@@ -137,7 +137,7 @@ int mappages(pagetable_t pagetable, uint64 va, uint64 size, uint64 pa, int perm)
 }
 {% endhighlight %}
 
-the function walk is similar to what i wrote in the post 'print a page table' (iterative vs recursive ????).
+the function walk is similar to what i wrote in the post 'print a page table' (it's iterative though).
 
 {% highlight c %}
 // The risc-v Sv39 scheme has three levels of page-table
@@ -167,8 +167,9 @@ pte_t * walk(pagetable_t pagetable, uint64 va, int alloc)
 }
 {% endhighlight %}
 
-Hope the above is (more or less) clear. A few sites that I found useful
-?????
-https://marz.utk.edu/my-courses/cosc130/lectures/virtual-memory/
-https://zolutal.github.io/understanding-paging/
+Hope the above is (more or less) clear.
+
+### A few sites that I found useful
+- (https://marz.utk.edu/my-courses/cosc130/lectures/virtual-memory/)
+- (https://zolutal.github.io/understanding-paging/)
 

@@ -63,7 +63,6 @@ void kfree(void *pa)
 {% endhighlight %}
 
 and once initialised (by calling freerange in kinit with arguments being the first address after kernel and PHYSTOP), we end up with a list of pages that can be given out at request.
-maybe a pic here ?????????
 
 Now there's this function kalloc (it's not a system call). Kalloc acquires a lock (kmem.lock), grabs a page (if available) from kmem.freelist and returns an address of that page. At the same time it removes that page from freelist so it's no longer available for future kalloc calls. Also then the lock is released.
 
