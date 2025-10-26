@@ -169,7 +169,8 @@ pte_t * walk(pagetable_t pagetable, uint64 va, int alloc)
 
 Hope the above is (more or less) clear.
 
-### A few sites that I found useful
-- (https://marz.utk.edu/my-courses/cosc130/lectures/virtual-memory/)
-- (https://zolutal.github.io/understanding-paging/)
+---
+A few sites that I found useful
+- [https://marz.utk.edu/my-courses/cosc130/lectures/virtual-memory/](https://marz.utk.edu/my-courses/cosc130/lectures/virtual-memory/)
+- [https://zolutal.github.io/understanding-paging/](https://zolutal.github.io/understanding-paging/)
 
