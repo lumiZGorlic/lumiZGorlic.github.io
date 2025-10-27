@@ -117,7 +117,7 @@ static struct disk {
 Let's have a look at the functions rw (for read/write) and intr (called when interrupt from the device is raised when the device finished processing a request). Below some things (e.g. __sync_synchronize) from the original code have been removed so it's clear and easy to read (hope there's enough comments and self-descriptive names).
 
 
-{% c highlight %}
+{% highlight c %}
 
 void virtio_disk_rw(struct buf *b, int write)
 {
