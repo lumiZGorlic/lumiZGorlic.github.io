@@ -217,7 +217,8 @@ just to explain the sleep/wakeup mechanism used (could dedicate a post to it) - 
 soooo to summarise the flow is - to read/write to disk populate the descriptors, then notify the device, then go to sleep and then when the device is done with the request, it fires an interrupt which
 we handle in virtio_disk_intr which wakes up the process.
 
+---
 some useful links
-[https://brennan.io/2020/03/22/sos-block-device/](https://brennan.io/2020/03/22/sos-block-device/)
-[https://wiki.osdev.org/Virtio](https://wiki.osdev.org/Virtio)
+- [https://brennan.io/2020/03/22/sos-block-device/](https://brennan.io/2020/03/22/sos-block-device/)
+- [https://wiki.osdev.org/Virtio](https://wiki.osdev.org/Virtio)
 
