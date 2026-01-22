@@ -7,10 +7,12 @@ categories: jekyll update
 
 
 Now we are to implement mmap (and munmap) system calls - actually just a subset of their features related to mapping files. A fully fledged mmap is very powerful and has many use cases, for example it allows us to: 
-1) memory map files (thanks to that, we can treat a file as contiguous memory region and thus avoid calls to read and write)
-2) share memory between processes (used when processes need fast access to huge data sets e.g. in case of databases)
-3) allocate memory (as an alternative to malloc)
-4) map code and data segments (which is for example what kernel does when an user process uses shared libraries)
+
+1. memory map files (thanks to that, we can treat a file as contiguous memory region and thus avoid calls to read and write)
+2. share memory between processes (used when processes need fast access to huge data sets e.g. in case of databases)
+3. allocate memory (as an alternative to malloc)
+4. map code and data segments (which is for example what kernel does when an user process uses shared libraries)
+
 and i guess many many more.
 
 Here's mmap signature 
